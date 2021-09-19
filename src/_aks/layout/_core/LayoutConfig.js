@@ -120,7 +120,7 @@ export function getInitLayoutConfig() {
     },
     brand: {
       self: {
-        theme: "light", // light/dark
+        theme: "dark", // light/dark
       },
     },
     aside: {

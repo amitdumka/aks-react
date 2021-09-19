@@ -17,18 +17,18 @@
 // Light
 //@import "./_aks/_assets/sass/themes/layout/header/base/light.scss";
 // Dark
-//@import "./_aks/_assets/sass/themes/layout/header/base/dark.scss";
+@import "./_aks/_assets/sass/themes/layout/header/base/dark.scss";
   
 // Header Menu themes
 // Light
 //@import "./_aks/_assets/sass/themes/layout/header/menu/light.scss";
 // Dark
- //@import "./_aks/_assets/sass/themes/layout/header/menu/dark.scss";
+ @import "./_aks/_assets/sass/themes/layout/header/menu/dark.scss";
 
 // Brand themes
-.brand-dark {
-  @import "./_aks/_assets/sass/themes/layout/brand/dark.scss";
-}
+ .brand-dark {
+   @import "./_aks/_assets/sass/themes/layout/brand/dark.scss";
+ }
 // Light
 .brand-light {
   @import "./_aks/_assets/sass/themes/layout/brand/light.scss";
@@ -38,7 +38,7 @@
 // Dark
 //@import "./_aks/_assets/sass/themes/layout/aside/dark.scss";
 // Light
- @import "./_aks/_assets/sass/themes/layout/aside/light.scss";
+ //@import "./_aks/_assets/sass/themes/layout/aside/light.scss";
 
 // .example-highlight {
 //   padding: 0rem 1.5rem 1.75rem !important;
