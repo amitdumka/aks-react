@@ -16,8 +16,20 @@ dumps
 
 
 # assets
-/public/media
-/src/_aks/_assets/
+/public/media/bg
+/public/media/books
+/public/media/demos
+/public/media/client*
+/public/media/products
+/public/media/logos copy
+/public/media/stock-*
+/public/media/project*
+/public/media/plugins
+/public/media/users
+/public/media/svg
+
+
+/src/_aks/_assets/plugins/keenthemes-icons
 /src/_aks/i18n/messages/
 /src/app/modules/Auth/__mocks__
 
