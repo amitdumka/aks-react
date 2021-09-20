@@ -26,11 +26,7 @@ dumps
 /public/media/plugins
 /public/media/users
 /public/media/svg
-
-
 /src/_aks/_assets/plugins/keenthemes-icons
-/src/_aks/i18n/messages/
-/src/app/modules/Auth/__mocks__
 
 # production
 /_site
