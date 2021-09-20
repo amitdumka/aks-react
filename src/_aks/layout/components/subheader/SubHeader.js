@@ -6,7 +6,7 @@ import {QuickActions} from "./components/QuickActions";
 import {BreadCrumbs} from "./components/BreadCrumbs";
 import {getBreadcrumbsAndTitle, useSubheader} from "../../_core/AKSSubheader";
 import {useHtmlClassService} from "../../_core/AKSLayout"
-
+import Clock from "../../../../app/componets/Clock";
 export function SubHeader() {
   const uiService = useHtmlClassService();
   const location = useLocation();
@@ -77,7 +77,8 @@ export function SubHeader() {
             <a href="#" className="btn btn-light btn-sm font-weight-bold" id="kt_dashboard_daterangepicker"
                data-toggle="tooltip" title="Today's Date!" data-placement="left">
               <span className="text-muted font-weight-bold mr-2" id="kt_dashboard_daterangepicker_title">Today</span>
-              <span className="text-primary font-weight-bold" id="kt_dashboard_daterangepicker_date">Aug 16</span>
+              <span className="text-primary font-weight-bold" id="kt_dashboard_daterangepicker_date">Aug 16,</span> 
+              <span className="text-primary font-weight-bold ml-1" id="kt_dashboard_daterangepicker_date"><Clock /></span>  
             </a>
             <QuickActions/>
           </div>
