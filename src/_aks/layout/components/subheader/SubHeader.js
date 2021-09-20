@@ -6,7 +6,7 @@ import {QuickActions} from "./components/QuickActions";
 import {BreadCrumbs} from "./components/BreadCrumbs";
 import {getBreadcrumbsAndTitle, useSubheader} from "../../_core/AKSSubheader";
 import {useHtmlClassService} from "../../_core/AKSLayout"
-import Clock from "../../../../app/componets/Clock";
+import Clock from "../../../../app/componets/Utils/Clock";
 export function SubHeader() {
   const uiService = useHtmlClassService();
   const location = useLocation();

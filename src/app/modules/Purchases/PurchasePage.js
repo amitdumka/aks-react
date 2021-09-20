@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { MainPage } from "../../componets/Modules/MainPage";
 
 import { Component1Page as PurchaseItems } from "";
 import { Component1Page as ProductPurchase } from "";
 import { Component1Page as ProductItems } from "";
-import { MainPage } from "./MainPage";
+
+
 
 export default class PurchasePage extends Component {
   constructor(props) {
@@ -32,5 +34,6 @@ export default class PurchasePage extends Component {
     );
   }
 }
+
 
 
