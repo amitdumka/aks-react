@@ -37,7 +37,7 @@ export function Select({
       </select>
       {withFeedbackLabel && (
         <FieldFeedbackLabel
-          erros={error}
+          error={error}
           touched={touched}
           label={label}
           customFeedbackLabel={customFeedbackLabel}
