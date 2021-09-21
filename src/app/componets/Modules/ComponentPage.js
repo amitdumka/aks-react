@@ -18,93 +18,93 @@ export default class ComponentPage extends Component {
     this.state = {}
     this.uiEvents = {
       newButtonClick: () => {
-        this.history.push(this.ComPath + '/new')
+        this.history.push(this.Settings.ComPath + '/new')
       },
       openEditDialog: (id) => {
-        this.history.push(`${this.ComPath}/${id}/edit`)
+        this.history.push(`${this.Settings.ComPath}/${id}/edit`)
       },
       openDeleteDialog: (id) => {
-        this.history.push(`${this.ComPath}/${id}/delete`)
+        this.history.push(`${this.Settings.ComPath}/${id}/delete`)
       },
       openDeletesDialog: () => {
-        this.history.push(`${this.ComPath}/deletes`)
+        this.history.push(`${this.Settings.ComPath}/deletes`)
       },
       openFetchsDialog: () => {
-        this.history.push(`${this.ComPath}/fetch`)
+        this.history.push(`${this.Settings.ComPath}/fetch`)
       },
       openUpdatesStatusDialog: () => {
-        this.history.push(this.ComPath + '/updateStatus')
+        this.history.push(this.Settings.ComPath + '/updateStatus')
       },
     }
   }
 
   render() {
     return (
-      <UIProvider UIEvents={this.uiEvents} Filters={this.filters} InitDataModel={this.initDataModel}>
+      <UIProvider UIEvents={this.uiEvents} Filters={this.Settings.filters} InitDataModel={this.Settings.initDataModel}>
         <CompLoadingDialog />
-        <Route path={this.ComPath + '/new'}>
+        <Route path={this.Settings.ComPath + '/new'}>
           {({ history, match }) => (
             <EditDialog
               show={match != null}
               onHide={() => {
-                history.push(this.ComPath)
+                history.push(this.Settings.ComPath)
               }}
             />
           )}
         </Route>
-        <Route path={this.ComPath + '/:id/edit'}>
+        <Route path={this.Settings.ComPath + '/:id/edit'}>
           {({ history, match }) => (
             <EditDialog
               show={match != null}
               id={match && match.params.id}
               onHide={() => {
-                history.push(this.ComPath + '')
+                history.push(this.Settings.ComPath + '')
               }}
             />
           )}
         </Route>
-        <Route path={this.ComPath + '/deletes'}>
+        <Route path={this.Settings.ComPath + '/deletes'}>
           {({ history, match }) => (
             <DeletesDialog
               show={match != null}
               onHide={() => {
-                history.push(this.ComPath + '')
+                history.push(this.Settings.ComPath + '')
               }}
             />
           )}
         </Route>
-        <Route path={this.ComPath + '/:id/delete'}>
+        <Route path={this.Settings.ComPath + '/:id/delete'}>
           {({ history, match }) => (
             <DeleteDialog
               show={match != null}
               id={match && match.params.id}
               onHide={() => {
-                history.push(this.ComPath + '')
+                history.push(this.Settings.ComPath + '')
               }}
             />
           )}
         </Route>
-        <Route path={this.ComPath + '/fetch'}>
+        <Route path={this.Settings.ComPath + '/fetch'}>
           {({ history, match }) => (
             <FetchDialog
               show={match != null}
               onHide={() => {
-                history.push(this.ComPath + '')
+                history.push(this.Settings.ComPath + '')
               }}
             />
           )}
         </Route>
-        <Route path={this.ComPath + '/updateStatus'}>
+        <Route path={this.Settings.ComPath + '/updateStatus'}>
           {({ history, match }) => (
             <UpdateStateDialog
               show={match != null}
               onHide={() => {
-                history.push(this.ComPath + '')
+                history.push(this.Settings.ComPath + '')
               }}
             />
           )}
         </Route>
-        <ViewCard />
+        <ViewCard Settings={this.Settings}/>
       </UIProvider>
     )
   }

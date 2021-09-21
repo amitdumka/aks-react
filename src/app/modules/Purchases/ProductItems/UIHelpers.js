@@ -4,6 +4,9 @@
 //export const AccountTypeTitles = ["Saving", "Current", "CC","OD","Other",""];
 // Customize above lines of code based on your requirements. 
 
+
+//TODO: Look for is it relvenatent in this context.
+
 export const sizePerPageList = [
   { text: "5", value: 5 },
   { text: "7", value: 7 },

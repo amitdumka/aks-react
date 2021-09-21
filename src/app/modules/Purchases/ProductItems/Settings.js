@@ -1,10 +1,7 @@
 //Setting.js
 // This is setting and configuration file for creating Modules component.
 // All Changes are need to made here so it will be reflected at whole module component level.
-import {
-  sortCaret,
-  headerSortingClasses,
-} from "../../../../../_aks/_helpers";
+import { sortCaret, headerSortingClasses } from "../../../../../_aks/_helpers";
 import * as columnFormatters from "./column-formatters";
 import * as Yup from "yup";
 
@@ -23,26 +20,36 @@ const uiProps = {};
 const ComponentName = "Product Item";
 export const initDataModel = {
   productItemId: 0,
-  storeId: 1,
-  store: null,
-  userId: "WebUI",
-  entryStatus: 0,
-  isReadOnly: false,
+  barcode: "",
+  brandId: 0,
+  brandName: null,
+  styleCode: "",
+  productName: "",
+  itemDesc: "",
+  categorys: 0,
+  mainCategory: null,
+  productCategory: null,
+  productType: null,
+  mrp: 0,
+  taxRate: 0,
+  cost: 0,
+  hsnCode: "",
+  size: 0,
+  units: 0,
+  purchaseItems: null,
 };
 
-const EditSchema = Yup.object().shape({
-  onDate: Yup.date().required("Date is required"),
-  period: Yup.string().required("Period is required"),
-  rentType: Yup.number().required("Select Rent Type , is required"),
-  rentedLocationId: Yup.number()
-    .moreThan(0)
-    .required("Select Rent Location , is required"),
-  mode: Yup.number().required("Select mode is required"),
-  amount: Yup.number()
-    .moreThan(0)
-    .required("Amount is required"),
-  remarks: Yup.string().required("Remarks is required"),
-  paymentDetails: Yup.string().required("Payment Details is required"),
+export const EditSchema = Yup.object().shape({
+  brandId: Yup.number().moreThan(0).required("Select Brand"),
+  barcode: Yup.string().required("Barcode is required"),
+  styleCode: Yup.string().required("Style Code is required"),
+  productName: Yup.string().required("Product Name is required"),
+  categorys: Yup.number().required("Select Catgegory is required"),
+  mrp: Yup.number().moreThan(0).required("MRP is required"),
+  taxRate: Yup.number().moreThan(0).required("Tax Rate is required"),
+  cost: Yup.number().moreThan(0).required("Cost is required"),
+  size: Yup.number().moreThan(0).required("Size is required"),
+  unit: Yup.number().moreThan(0).required("Unit is required"),
 });
 
 export const columns = [
@@ -54,58 +61,59 @@ export const columns = [
     headerSortingClasses,
   },
   {
-    dataField: "productName",
-    text: "Name",
-    sort: true,
-    sortCaret: sortCaret,
-    headerSortingClasses,
-  },
-  {
-    dataField: "barCode",
+    dataField: "barcode",
     text: "Barcode",
     sort: true,
     sortCaret: sortCaret,
     headerSortingClasses,
   },
   {
-    dataField: "onDate",
-    text: "Date",
+    dataField: "productName",
+    text: "Name",
+    sort: true,
+    sortCaret: sortCaret,
+    headerSortingClasses,
+  },
+  
+  {
+    dataField: "brandName",
+    text: "Brand",
     sort: true,
     sortCaret: sortCaret,
     headerSortingClasses,
   },
   {
-    dataField: "period",
-    text: "Period",
+    dataField: "styleCode",
+    text: "Sytle",
     sort: false,
-
     sortCaret: sortCaret,
+    headerSortingClasses,
   },
   {
-    dataField: "amount",
-    text: "Amount",
+    dataField: "mrp",
+    text: "MRP",
     sort: true,
     sortCaret: sortCaret,
     headerSortingClasses,
   },
   {
-    dataField: "mode",
-    text: "Mode",
+    dataField: "cost",
+    text: "Cost",
     sort: true,
     //formatter:columnFormatters.TypeColumnFormatter,
     sortCaret: sortCaret,
     headerSortingClasses,
   },
   {
-    dataField: "paymentDetails",
-    text: "Payment Details",
+    dataField: "categorys",
+    text: "Category",
     sort: true,
     sortCaret: sortCaret,
     headerSortingClasses,
   },
   {
-    dataField: "remarks",
-    text: "Remarks",
+    dataField: "mainCategory",
+    text: "Product Type",
     sort: false,
     //formatter:columnFormatters.TypeColumnFormatter,
     sortCaret: sortCaret,
@@ -129,7 +137,7 @@ export const columns = [
 export const Settings = {
   componentName: ComponentName,
   defaultSorted: "productName",
-  filter: { productName: "", barcode: "",  },
+  filter: { productName: "", barcode: "" ,styleCode:""},
   basePath: "/purchase",
   comPath: "/purchase/productItems",
   tableSettings: {
@@ -150,9 +158,10 @@ export const Settings = {
       placeholder: "Filter by status",
       options: [
         { label: "All", value: "" },
-        { label: "Suspended", value: "0" },
-        { label: "Active", value: "1" },
-        { label: "Pending", value: "2" },
+        { label: "Shirting", value: "0" },
+        { label: "Suiting", value: "1" },
+        { label: "Readmade", value: "2" },
+        { label: "InnerWear", value: "3" },
       ],
       label: " <b>Filter</b> by Status",
     },
@@ -161,8 +170,11 @@ export const Settings = {
       placeholder: "Filter by type",
       options: [
         { label: "All", value: "" },
-        { label: "Business", value: "0" },
-        { label: "Individual", value: "1" },
+        { label: "Arvind Mills", value: "0" },
+        { label: "Arvind RTW", value: "1" },
+        { label: "USPA", value: "2" },
+        { label: "FM", value: "3" },
+        { label: "Arrow", value: "4" },
       ],
       label: "<b>Filter</b> by Type",
     },
@@ -173,17 +185,15 @@ export const Settings = {
     },
   },
   deleteSetting: {
-    title: "Product Item Delete",
-    deleteMessage: "Are you sure to permanently delete this Product Item ?",
+    title: ComponentName+" Delete",
+    deleteMessage: `Are you sure to permanently delete this ${ComponentName}?`,
     loadingMessage: "Product Item  is deleting...",
-    deletesMessage: "Are you sure to permanently delete selected Product Item ?",
+    deletesMessage:
+      `Are you sure to permanently delete selected ${ComponentName} ?`,
   },
   headerSetting: {
-    title: " Product Item Payment",
+    title: " Product Item",
     editColumnData: "",
   },
   editSchema: EditSchema,
 }; //end of Settings
-
-
-

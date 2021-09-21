@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { MainPage } from "../../componets/Modules/MainPage";
 
-import { Component1Page as PurchaseItems } from "";
-import { Component1Page as ProductPurchase } from "";
-import { Component1Page as ProductItems } from "";
-
-
+import { ProductItemsPage as PurchaseItemsPage } from "./ProductItems/ProductItemsPage";
+import { ProductItemsPage as ProductPurchase } from "./ProductItems/ProductItemsPage";
+import { ProductItemsPage as ProductItems } from "./ProductItems/ProductItemsPage";
 
 export default class PurchasePage extends Component {
   constructor(props) {
@@ -15,7 +13,7 @@ export default class PurchasePage extends Component {
     this.ComponentList = [
       { path: "/productItems", component: { ProductItems } },
       { path: "/purchaseProducts", component: { ProductPurchase } },
-      { path: "/purchaseItems", component: { PurchaseItems } },
+      { path: "/purchaseItems", component: { PurchaseItemsPage } },
     ];
     this.BasePath = "/purchase";
     this.DefaultPath = "/purchase/productItems";
@@ -34,6 +32,3 @@ export default class PurchasePage extends Component {
     );
   }
 }
-
-
-
