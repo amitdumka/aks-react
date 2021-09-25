@@ -1,121 +1,141 @@
-import React from "react";
-import { useSubheader } from "../../../_aks/layout";
-import { Field, Formik, useFormik, withFormik } from "formik";
+import React from 'react'
+import { useSubheader } from '../../../_aks/layout'
+import { Field, Formik, useFormik, withFormik } from 'formik'
 import {
   Input,
   Select,
   DatePickerField,
-} from "../../../_aks/_partials/controls";
+} from '../../../_aks/_partials/controls'
 
 //Schema or Element of Forms delcarations.
 // add element based on serial way , first in first out.
-const town = ["City", "Village", "Suburbs"];
+const cbTest = [
+  { label: 'Work', value: 'work', name: 'workcb' },
+  { label: 'Home', value: 'home', name: 'homecb' },
+  { label: 'Other', value: 'other', name: 'othercb' },
+]
+
+const town = ['City', 'Village', 'Suburbs']
 const genders = [
   {
-    label: "Male",
+    label: 'Male',
     value: 0,
   },
   {
-    label: "Female",
+    label: 'Female',
     value: 1,
   },
   {
-    label: "Trans",
+    label: 'Trans',
     value: 3,
   },
-];
+]
 const testSchema = {
   firstName: {
-    element: "text",
-    label: "First Name",
-    placeholder: "Enter first name",
+    element: 'text',
+    label: 'First Name',
+    placeholder: 'Enter first name',
     required: true,
     validation: {
-      regex: "^[a-zA-Z0–9 ]+$",
-      message: "Only contain alphanumeric characters allowed",
+      regex: '^[a-zA-Z0–9 ]+$',
+      message: 'Only contain alphanumeric characters allowed',
     },
   },
   lastName: {
-    element: "text",
-    label: "Last Name",
-    placeholder: "Enter Last name",
+    element: 'text',
+    label: 'Last Name',
+    placeholder: 'Enter Last name',
     required: true,
     validation: {
-      regex: "^[a-zA-Z0–9 ]+$",
-      message: "Only contain alphanumeric characters allowed",
+      regex: '^[a-zA-Z0–9 ]+$',
+      message: 'Only contain alphanumeric characters allowed',
     },
   },
   age: {
-    element: "text",
-    label: "Age",
-    placeholder: "Enter your age",
+    element: 'text',
+    label: 'Age',
+    placeholder: 'Enter your age',
     required: true,
     validation: {
-      regex: "^[a-zA-Z0–9 ]+$",
-      message: "Only contain alphanumeric characters allowed",
+      regex: '^[a-zA-Z0–9 ]+$',
+      message: 'Only contain alphanumeric characters allowed',
     },
   },
   gender: {
-    element: "select",
-    label: "Gender",
-    placeholder: "Select Gender",
+    element: 'select',
+    label: 'Gender',
+    placeholder: 'Select Gender',
     required: true,
     options: genders,
-    valueName: "value",
-    keyName: "label",
+    valueName: 'value',
+    keyName: 'label',
     validation: {
-      regex: "^[a-zA-Z0–9 ]+$",
-      message: "Only contain alphanumeric characters allowed",
+      regex: '^[a-zA-Z0–9 ]+$',
+      message: 'Only contain alphanumeric characters allowed',
+    },
+  },
+
+  addressTypes: {
+    element: 'multicheckbox',
+    label: 'Address',
+    placeholder: 'Select(s) Address Type',
+    required: true,
+    options: cbTest,
+    valueName: 'value',
+    keyName: 'label',
+    validation: {
+      regex: '^[a-zA-Z0–9 ]+$',
+      message: 'Only contain alphanumeric characters allowed',
     },
   },
   townType: {
-    element: "radio",
-    label: "Town Type",
-    placeholder: "Type of Town",
+    element: 'radio',
+    label: 'Town Type',
+    placeholder: 'Type of Town',
     required: true,
     options: town,
-    valueName: "value",
-    keyName: "label",
+    valueName: 'value',
+    keyName: 'label',
     validation: {
-      regex: "^[a-zA-Z0–9 ]+$",
-      message: "Only contain alphanumeric characters allowed",
+      regex: '^[a-zA-Z0–9 ]+$',
+      message: 'Only contain alphanumeric characters allowed',
     },
   },
-};
+}
 
 export const TestMPage = () => {
-  const subheader = useSubheader();
-  subheader.setTitle("Form Gen Test");
+  const subheader = useSubheader()
+  subheader.setTitle('Form Gen Test')
   const submit = (values) => {
-    alert(JSON.stringify(values));
-  };
-  console.log(testSchema);
+    alert(JSON.stringify(values))
+  }
+  console.log(testSchema)
   return (
     <>
       <div className="h2">Welcome to eStore </div>
       <div className="h4">Testing of Json form component</div>
       <GenForm schema={testSchema} onSubmit={submit} />
     </>
-  );
-};
+  )
+}
 
 export class GenForm extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = {};
-    this.schemaFields = (props.schema && Object.keys(props.schema)) || [];
+    super(props)
+    this.state = {}
+    this.schemaFields = (props.schema && Object.keys(props.schema)) || []
   }
 
   componentDidMount() {
     this.schemaFields =
-      (this.props.schema && Object.keys(this.props.schema)) || [];
-    console.log(this.props.schema);
-    console.log(this.schemaFields);
+      (this.props.schema && Object.keys(this.props.schema)) || []
+    console.log(this.props.schema)
+    console.log(this.schemaFields)
   }
   componentDidUpdate() {
     this.schemaFields =
-      (this.props.schema && Object.keys(this.props.schema)) || [];
-    console.log(this.props.schema);
+      (this.props.schema && Object.keys(this.props.schema)) || []
+    console.log(this.props.schema)
   }
   render() {
     return (
@@ -123,11 +143,11 @@ export class GenForm extends React.Component {
         <div> Test Form generated by json</div>
         <Formik
           initialValues={{
-            firstName: "",
-            lastName: "",
+            firstName: '',
+            lastName: '',
           }}
           onSubmit={(values, actions) => {
-            alert(JSON.stringify(values));
+            alert(JSON.stringify(values))
           }}
         >
           {({ handleSubmit, values, errors }) => (
@@ -143,36 +163,40 @@ export class GenForm extends React.Component {
           )}
         </Formik>
       </>
-    );
+    )
   }
 
   // Start of Option list genaration.
   getSchemaFieldOptions(schema, field) {
     return schema[field].options.map((option) => {
-      let label = option.label? option.label:option;
-      let value = option.value?option.value:option;
+      let label = option.label ? option.label : option
+      let value = option.value ? option.value : option
       if (Array.isArray(option)) {
-        value = option[0].value?option[0].value:option[0];
-        label = option[1].label?option[1].label:option[1] || option[0].label?option[0].label:option[0];
+        value = option[0].value ? option[0].value : option[0]
+        label = option[1].label
+          ? option[1].label
+          : option[1] || option[0].label
+          ? option[0].label
+          : option[0]
       }
-      return { value, label };
-    });
+      return { value, label }
+    })
   }
   //end of option list genaration
 
   //Start of Creating Form Element for a Form
   getSchemaElement(schema, field) {
     switch (schema[field].element) {
-      case "radio":
+      case 'radio':
         return (
           <RadioField
             label={schema[field].label}
             name={field}
             options={this.getSchemaFieldOptions(schema, field)}
           />
-        );
+        )
 
-      case "select":
+      case 'select':
         return (
           <SelectField
             name={field}
@@ -181,23 +205,34 @@ export class GenForm extends React.Component {
             keyName={schema[field].keyName}
             placeholder={schema[field].placeholder}
           />
-        );
+        )
 
-      case "number":
+      case 'number':
         return (
           <NumberField name={field} placeholder={schema[field].placeholder} />
-        );
+        )
+      case 'checkbox':
+        break
+      case 'multicheckbox':
+        return (
+          <MultiCheckField
+            label={schema[field].label}
+            name={field}
+            placeholder={schema[field].placeholder}
+            checkOptions={schema[field].options}
+          />
+        )
 
-      case "date":
-        break;
-      case "datetime":
-        break;
+      case 'date':
+        break
+      case 'datetime':
+        break
 
       default:
-      case "text":
+      case 'text':
         return (
           <TextField name={field} placeholder={schema[field].placeholder} />
-        );
+        )
     }
   }
   //End of Form Element Creation for a form
@@ -213,8 +248,8 @@ const TextField = ({ label, name, placeholder, className }) => {
         label={label}
       />
     </div>
-  );
-};
+  )
+}
 const NumberField = ({ label, name, placeholder, className }) => {
   return (
     <div className="col-lg-4">
@@ -226,8 +261,8 @@ const NumberField = ({ label, name, placeholder, className }) => {
         label={label}
       />
     </div>
-  );
-};
+  )
+}
 const TelField = ({ label, name, placeholder, className }) => {
   return (
     <div className="col-lg-4">
@@ -239,8 +274,8 @@ const TelField = ({ label, name, placeholder, className }) => {
         label={label}
       />
     </div>
-  );
-};
+  )
+}
 const EmailField = ({ label, name, placeholder, className }) => {
   return (
     <div className="col-lg-4">
@@ -252,18 +287,18 @@ const EmailField = ({ label, name, placeholder, className }) => {
         label={label}
       />
     </div>
-  );
-};
+  )
+}
 
 const RadioField = ({ label, name, options, className }) => {
-  console.log(options);
+  console.log(options)
   return (
-    <div className="col-lg-4 mb-3">
-       <label className="border mb-1 mt-1 p-2 text-primary">{label}</label>
-       <br/>
+    <div className="col-lg-4 mb-3 p-1 border rounded ">
+      <label className="border mb-1 mt-1  text-primary">{label}</label>
+      <br />
       {options &&
         options.map((optionItem) => (
-          <>     
+          <>
             <Field
               className=" mr-3 ml-3 mb-3"
               type="radio"
@@ -271,15 +306,14 @@ const RadioField = ({ label, name, options, className }) => {
               value={optionItem.value}
               key={optionItem.value}
             />
-            <label className={"ml-2 mb-1" + className && className}>
+            <label className='ml-2 mb-1'>
               {optionItem.label}
             </label>
-           
           </>
         ))}
     </div>
-  );
-};
+  )
+}
 
 const SelectField = ({
   label,
@@ -289,7 +323,7 @@ const SelectField = ({
   keyName,
   valueName,
 }) => {
-  console.log(options);
+  console.log(options)
   return (
     <div className="col-lg-4">
       <Select name={name} label={label}>
@@ -301,33 +335,37 @@ const SelectField = ({
           ))}
       </Select>
     </div>
-  );
-};
+  )
+}
 
 const MultiCheckField = ({ label, checkOptions, className }) => {
   return (
-    <div className="col-lg-4">
+    <div className="col-lg-4 m-2 p-1 border rounded border-success">
+      <label className="text-success mb-2">{label && label}</label>
+      <br />
       {checkOptions.map((checkField) => (
         <>
           <Field
             type="checkbox"
             name={checkField.name}
             value={checkField.value}
+            className={' mb-3 mr-1 ml-2 '+className}
           />
-          <label className={"ml-2 mb-1" + className && className}>
+          <label className={' ml-1 mr-2  mb-1 ' + className}>
             {checkField.label}
           </label>
+          
         </>
       ))}
     </div>
-  );
-};
+  )
+}
 const CheckField = ({ name, label, value, className }) => {
   return (
     <div className="col-lg-4">
       <Field type="checkbox" name={name} value={value} />
-      <label className={"ml-2 mb-1" + className && className}>{label}</label>
+      <label className={'ml-2 mb-1' + className && className}>{label}</label>
     </div>
-  );
-};
+  )
+}
 //End of Field Controls
