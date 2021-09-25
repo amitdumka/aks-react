@@ -5,6 +5,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import * as actions from '../../../_redux/rents/Actions'
 import * as commonActions from '../../../../_redux/Actions'
 import { ModalProgressBar } from ''
+import { EditForm } from './EditForm'
 
 export default class EditDialog extends Component {
   constructor(props) {
