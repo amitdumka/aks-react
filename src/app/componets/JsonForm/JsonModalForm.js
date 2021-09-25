@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
-import { Formik, Form } from 'formik'
-import * as FieldContols from './Field'
-import { Modal } from 'react-bootstrap'
-import { ModalProgressBar } from './ModalProgressBar'
-import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import React, { Component } from "react";
+import { Formik, Form } from "formik";
+//import * as FieldContols from "./Field";
+import { Modal } from "react-bootstrap";
+import { ModalProgressBar } from "../../../_aks/_partials/controls";
+//import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { GetSchemaElement } from "./Fields";
 
 //Define Input Requirements
 // onSubmit: saveData
@@ -14,36 +15,41 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 
 export default class JsonModalForm extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       formName: props.headerTitle,
-      headerTitle: 'New ' + props.headerTitle,
-    }
-    this.schemaFields = (props.schema && Object.keys(props.schema)) || []
-    this.uiContext = props.uiContext // this is passed from your ui
-    this.dispatch = useDispatch()
-    this.onSubmit = props.onSubmit
+      headerTitle: this.setHeaderTitle(),
+    };
+    this.schemaFields = (props.schema && Object.keys(props.schema)) || [];
+    //this.uiContext = props.uiContext; // this is passed from your ui
+    //this.dispatch = useDispatch();
+    this.onSubmit = props.onSubmit;
+    this.setHeaderTitle();
   }
   componentDidMount() {
+    // this.dispatch = useDispatch();
     this.schemaFields =
-      (this.props.schema && Object.keys(this.props.schema)) || []
-    this.setHeaderTitle()
+      (this.props.schema && Object.keys(this.props.schema)) || [];
+    //this.setHeaderTitle();
   }
   componentDidUpdate() {
+    //this.dispatch = useDispatch();
     this.schemaFields =
-      (this.props.schema && Object.keys(this.props.schema)) || []
-    this.setHeaderTitle()
+      (this.props.schema && Object.keys(this.props.schema)) || [];
+    // this.setHeaderTitle();
   }
 
   setHeaderTitle() {
     if (this.props.initialValues && this.props.id) {
-      this.setState({
-        headerTitle: `Edit ${this.HeaderTitle} '${this.props.headerElement}'`,
-      })
-    }
+      return `Edit '${this.props.headerElement}'`;
+      // this.setState({
+      //   headerTitle: `Edit '${this.props.headerElement}'`,
+      // });
+    } else return "New " + this.props.headerTitle;
   }
 
   render() {
+    //this.dispatch = useDispatch();
     return (
       <>
         <Modal
@@ -61,7 +67,8 @@ export default class JsonModalForm extends Component {
             enableReinitialize={true}
             validationSchema={this.props.EditSchema}
             onSubmit={(values) => {
-              this.onSubmit(values)
+              //alert(JSON.stringify(values))
+              this.props.onSubmit(values);
             }}
           >
             {({ handleSubmit }) => (
@@ -72,17 +79,12 @@ export default class JsonModalForm extends Component {
                       <div className="spinner spinner-lg spinner-success" />
                     </div>
                   )}
-                  <Form
-                    onSubmit={handleSubmit}
-                    className="form form-label-right"
-                  >
-                    {this.schemaFields.map((field) => (
+                  <Form className="form form-label-right card-group row-flex  row-cols-md-3 row-cols-lg-4 row-cols-sm-1 g-4">
+                    {this.schemaFields.map((field, index) => (
                       <div key={field}>
-                        <label>{this.props.schema[field].label}</label>
-                        {this.getSchemaElement(this.props.schema, field)}
+                        {GetSchemaElement(this.props.schema, field)}
                       </div>
                     ))}
-                    <button type="submit">Submit</button>
                   </Form>
                 </Modal.Body>
                 <Modal.Footer>
@@ -107,14 +109,14 @@ export default class JsonModalForm extends Component {
           </Formik>
         </Modal>
       </>
-    )
+    );
   }
 }
 
 export class EditDialogHeader extends Component {
   constructor(props) {
-    super(props)
-    this.state = { title: props.title }
+    super(props);
+    this.state = { title: props.title };
   }
   render() {
     return (
@@ -126,6 +128,12 @@ export class EditDialogHeader extends Component {
           </Modal.Title>
         </Modal.Header>
       </>
-    )
+    );
   }
 }
+
+// <div class="grid" style="--bs-rows: 3; --bs-columns: 3;">
+//   <div>Auto-column</div>
+//   <div class="g-start-2" style="grid-row: 2">Auto-column</div>
+//   <div class="g-start-3" style="grid-row: 3">Auto-column</div>
+// </div>
