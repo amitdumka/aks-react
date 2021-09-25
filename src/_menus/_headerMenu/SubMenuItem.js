@@ -5,7 +5,7 @@ import { toAbsoluteUrl } from "../../_aks/_helpers";
 
 export function SubMenuItem({ url, label, arrow, icon }) {
   let className = "menu-link ";
-  //console.log(icon);
+  ////console.log(icon);
   if (arrow != null && arrow) className += " menu-toggle";
   return (
     <NavLink className={className} to={url}>

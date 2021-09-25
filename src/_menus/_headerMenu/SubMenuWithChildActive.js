@@ -9,7 +9,7 @@ export function SubMenuWithChildActive({ url, label, icon, subMenuList, hasChild
   const getMenuItemActive = (url) => {
     return checkIsActive(location, url) ? "menu-item-active" : "";
   };
-  //console.log(subMenuList);
+  ////console.log(subMenuList);
   let arrow = hasChild;
 
   return (

@@ -3,7 +3,7 @@ import { SubMenuItemActive } from "./SubMenuItemActive";
 
 
 export function SubMegaMenu({ label, url, menuList }) {
-  //console.log(menuList);
+  ////console.log(menuList);
   return (
     <>
       <li className="menu-item ">

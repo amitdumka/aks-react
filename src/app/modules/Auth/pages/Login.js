@@ -18,8 +18,8 @@ import { login } from "../_redux/authCrud";
 */
 
 const initialValues = {
-  email: "admin@demo.com",
-  password: "demo",
+  email: "admin@eStore.in",
+  password: "admin",
 };
 
 function Login(props) {
@@ -97,7 +97,7 @@ function Login(props) {
           <FormattedMessage id="AUTH.LOGIN.TITLE" />
         </h3>
         <p className="text-muted font-weight-bold">
-          Enter your username and password
+          Enter your details for Login!
         </p>
       </div>
       {/* end::Head */}
@@ -114,7 +114,7 @@ function Login(props) {
         ) : (
           <div className="mb-10 alert alert-custom alert-light-info alert-dismissible">
             <div className="alert-text ">
-              Use account <strong>admin@demo.com</strong> and password{" "}
+              Try with demo account <strong>admin@demo.com</strong> and password{" "}
               <strong>demo</strong> to continue.
             </div>
           </div>
@@ -122,7 +122,7 @@ function Login(props) {
 
         <div className="form-group fv-plugins-icon-container">
           <input
-            placeholder="Email"
+            placeholder="UserName"
             type="email"
             className={`form-control form-control-solid h-auto py-5 px-6 ${getInputClasses(
               "email"

@@ -8,8 +8,8 @@ import { MenuLevelThree } from "./MenuLevelThree";
 export function MenuLevelTwo({
     getMenuItemActive, label, url, icon, hasChild, subMenuItems,
 }) {
-    console.log(subMenuItems);
-    console.log(label);
+    //console.log(subMenuItems);
+    //console.log(label);
     return (
         <>
             {/* Surfaces */}

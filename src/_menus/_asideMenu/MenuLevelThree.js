@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 
 export function MenuLevelThree({ getMenuItemActive, subMenuItems }) {
-    console.log(subMenuItems.length);
+    //console.log(subMenuItems.length);
     return (
         <>
             {/*begin::3 Level*/}

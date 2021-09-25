@@ -14,7 +14,7 @@ export default function MegaMenuItem({
   const getMenuItemActive = (url) => {
     return checkIsActive(location, url) ? "menu-item-active" : "";
   };
-  //console.log(menuList);
+  ////console.log(menuList);
   return (
     <>
       {/*Mega submenu*/}
