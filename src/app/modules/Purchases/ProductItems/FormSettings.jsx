@@ -1,3 +1,6 @@
+
+// Create form element in the order input is required.
+
 export const FormsElements = {
   barcode: {
     label: 'Barcode',

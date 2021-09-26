@@ -1,150 +1,150 @@
-import React from "react";
-import { useSubheader } from "../../../_aks/layout";
-import { Field, Formik, useFormik, withFormik } from "formik";
+import React from 'react'
+import { useSubheader } from '../../../_aks/layout'
+import { Field, Formik, useFormik, withFormik } from 'formik'
 import {
   Input,
   Select,
   DatePickerField,
-} from "../../../_aks/_partials/controls";
+} from '../../../_aks/_partials/controls'
 
-import JsonModalForm from "../../componets/JsonForm/JsonModalForm";
-import JsonCardForm from "../../componets/JsonForm/JsonCardForm";
+import JsonModalForm from '../../componets/JsonForm/JsonModalForm'
+import JsonCardForm from '../../componets/JsonForm/JsonCardForm'
 
 //Schema or Element of Forms delcarations.
 // add element based on serial way , first in first out.
 const cbTest = [
-  { label: "Work", value: "work", name: "workcb" },
-  { label: "Home", value: "home", name: "homecb" },
-  { label: "Other", value: "other", name: "othercb" },
-];
+  { label: 'Work', value: 'work', name: 'workcb' },
+  { label: 'Home', value: 'home', name: 'homecb' },
+  { label: 'Other', value: 'other', name: 'othercb' },
+]
 
-const town = ["City", "Village", "Suburbs"];
+const town = ['City', 'Village', 'Suburbs']
 const genders = [
   {
-    label: "Male",
+    label: 'Male',
     value: 0,
   },
   {
-    label: "Female",
+    label: 'Female',
     value: 1,
   },
   {
-    label: "Trans",
+    label: 'Trans',
     value: 3,
   },
-];
+]
 const testSchema = {
   firstName: {
-    element: "text",
-    label: "First Name",
-    placeholder: "Enter first name",
+    element: 'text',
+    label: 'First Name',
+    placeholder: 'Enter first name',
     required: true,
     validation: {
-      regex: "^[a-zA-Z0–9 ]+$",
-      message: "Only contain alphanumeric characters allowed",
+      regex: '^[a-zA-Z0–9 ]+$',
+      message: 'Only contain alphanumeric characters allowed',
     },
   },
   lastName: {
-    element: "text",
-    label: "Last Name",
-    placeholder: "Enter Last name",
+    element: 'text',
+    label: 'Last Name',
+    placeholder: 'Enter Last name',
     required: true,
     validation: {
-      regex: "^[a-zA-Z0–9 ]+$",
-      message: "Only contain alphanumeric characters allowed",
+      regex: '^[a-zA-Z0–9 ]+$',
+      message: 'Only contain alphanumeric characters allowed',
     },
   },
   age: {
-    element: "number",
-    label: "Age",
-    placeholder: "Enter your age",
+    element: 'number',
+    label: 'Age',
+    placeholder: 'Enter your age',
     required: true,
     validation: {
-      regex: "^[a-zA-Z0–9 ]+$",
-      message: "Only contain alphanumeric characters allowed",
+      regex: '^[a-zA-Z0–9 ]+$',
+      message: 'Only contain alphanumeric characters allowed',
     },
   },
   gender: {
-    element: "select",
-    label: "Gender",
-    placeholder: "Select Gender",
+    element: 'select',
+    label: 'Gender',
+    placeholder: 'Select Gender',
     required: true,
     options: genders,
-    valueName: "value",
-    keyName: "label",
+    valueName: 'value',
+    keyName: 'label',
     validation: {
-      regex: "^[a-zA-Z0–9 ]+$",
-      message: "Only contain alphanumeric characters allowed",
+      regex: '^[a-zA-Z0–9 ]+$',
+      message: 'Only contain alphanumeric characters allowed',
     },
   },
 
   addressTypes: {
-    element: "multicheckbox",
-    label: "Address",
-    placeholder: "Select(s) Address Type",
+    element: 'multicheckbox',
+    label: 'Address',
+    placeholder: 'Select(s) Address Type',
     required: true,
     options: cbTest,
-    valueName: "value",
-    keyName: "label",
+    valueName: 'value',
+    keyName: 'label',
     validation: {
-      regex: "^[a-zA-Z0–9 ]+$",
-      message: "Only contain alphanumeric characters allowed",
+      regex: '^[a-zA-Z0–9 ]+$',
+      message: 'Only contain alphanumeric characters allowed',
     },
   },
   townType: {
-    element: "radio",
-    label: "Town Type",
-    placeholder: "Type of Town",
+    element: 'radio',
+    label: 'Town Type',
+    placeholder: 'Type of Town',
     required: true,
     options: town,
-    valueName: "value",
-    keyName: "label",
+    valueName: 'value',
+    keyName: 'label',
     validation: {
-      regex: "^[a-zA-Z0–9 ]+$",
-      message: "Only contain alphanumeric characters allowed",
+      regex: '^[a-zA-Z0–9 ]+$',
+      message: 'Only contain alphanumeric characters allowed',
     },
   },
   dob: {
-    element: "date",
-    label: "Date of Birth",
-    placeholder: "Enter your age",
+    element: 'date',
+    label: 'Date of Birth',
+    placeholder: 'Enter your age',
     required: true,
     validation: {
-      regex: "^[a-zA-Z0–9 ]+$",
-      message: "Only contain alphanumeric characters allowed",
+      regex: '^[a-zA-Z0–9 ]+$',
+      message: 'Only contain alphanumeric characters allowed',
     },
   },
   nowTime: {
-    element: "datetime",
-    label: "Now",
-    placeholder: "Enter your age",
+    element: 'datetime',
+    label: 'Now',
+    placeholder: 'Enter your age',
     required: true,
     validation: {
-      regex: "^[a-zA-Z0–9 ]+$",
-      message: "Only contain alphanumeric characters allowed",
+      regex: '^[a-zA-Z0–9 ]+$',
+      message: 'Only contain alphanumeric characters allowed',
     },
   },
-};
+}
 const initialValues = {
-  firstName: "",
-  lastName: "",
-};
+  firstName: '',
+  lastName: '',
+}
 export const TestMPage = ({ history }) => {
-  const subheader = useSubheader();
-  subheader.setTitle("Form Gen Test");
+  const subheader = useSubheader()
+  subheader.setTitle('Form Gen Test')
   const submit = (values) => {
-    alert(JSON.stringify(values));
-  };
+    alert(JSON.stringify(values))
+  }
 
-  const onHide=() => {
-    history.push("/testM");
+  const onHide = () => {
+    history.push('/testM')
   }
   //console.log(testSchema)
   return (
     <>
-    
-      <div className="h4 text-center bg-success border rounded border.light p-2 flex-row">Testing of Json form component</div>
-      {/* <GenForm schema={testSchema} onSubmit={submit} /> */}
+      <div className="h4 text-center bg-success border rounded border.light p-2 flex-row">
+        Testing of Json form component
+      </div>
       <JsonCardForm
         onHide={onHide}
         schema={testSchema}
@@ -156,7 +156,5 @@ export const TestMPage = ({ history }) => {
         col={3}
       />
     </>
-  );
-};
-
-
+  )
+}

@@ -1,10 +1,8 @@
 import React, { Component, useEffect, useMemo } from 'react'
 import { useUIContext } from '../UIContext'
-import { Modal } from 'react-bootstrap'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import * as actions from '../../../_redux/rents/Actions'
 import * as commonActions from '../../../../_redux/Actions'
-import { ModalProgressBar } from ''
 import { JsonModalForm } from '../../JsonForm/JsonModalForm'
 
 export default class EditDialog extends Component {
@@ -122,7 +120,7 @@ export function InputDialog({ id, show, onHide, stateName, commonState }) {
   const defaultUIContext = useUIContext()
   const defaultUIProps = useMemo(() => {
     return {
-      initialValues: defaultUIContext.initialValues,
+      initialValues: defaultUIContext.initDataModel,
     }
   }, [defaultUIContext])
 
@@ -152,7 +150,7 @@ export function InputDialog({ id, show, onHide, stateName, commonState }) {
       dispatch(actions.updateItem(data)).then(() => onHide())
     }
   }
-  
+
   return (
     <>
       <JsonModalForm

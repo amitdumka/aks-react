@@ -133,7 +133,7 @@ export const columns = [
     },
   },
 ];
-
+//Start of settings section
 export const Settings = {
   componentName: ComponentName,
   defaultSorted: "productName",
@@ -160,7 +160,7 @@ export const Settings = {
         { label: "All", value: "" },
         { label: "Shirting", value: "0" },
         { label: "Suiting", value: "1" },
-        { label: "Readmade", value: "2" },
+        { label: "Ready-made", value: "2" },
         { label: "InnerWear", value: "3" },
       ],
       label: " <b>Filter</b> by Status",
@@ -196,4 +196,4 @@ export const Settings = {
     editColumnData: "",
   },
   editSchema: EditSchema,
-}; //end of Settings
+}; //end of Settings section
