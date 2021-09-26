@@ -61,8 +61,8 @@ export const EmailField = ({ label, name, placeholder, className }) => {
 
 export const RadioField = ({ label, name, options, className }) => {
   return (
-    <div className="col  mb-3 p-1 border rounded ">
-      <label className="border mb-1 mt-1  text-primary">{label}</label>
+    <div className="col  mb-3 p-1  ">
+      <label className="mb-1 mt-1  text-primary">{label}</label>
       <br />
       {options &&
         options.map((optionItem) => (
@@ -109,7 +109,7 @@ export const SelectField = ({
 
 export const MultiCheckField = ({ label, checkOptions, className }) => {
   return (
-    <div className="col m-2 p-1 border rounded ">
+    <div className="col m-2 p-1  ">
       <label className="text-success mb-2">{label && label}</label>
       <br />
       {checkOptions.map((checkField) => (
