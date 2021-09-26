@@ -1,185 +1,130 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import {
   Card,
   CardBody,
   CardFooter,
   CardHeader,
-} from '../../../_aks/_partials/controls'
-import { Formik, Form } from 'formik'
-import * as FieldContols from './Field'
-import { Modal } from 'react-bootstrap'
-import { ModalProgressBar } from './ModalProgressBar'
+  CardHeaderToolbar,
+} from "../../../_aks/_partials/controls";
+import { Formik, Form } from "formik";
+import * as FieldContols from "./Fields";
+import { Modal } from "react-bootstrap";
+
+import { ModalProgressBar } from "../../../_aks/_partials/controls";
+//import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { GetSchemaElement } from "./Fields";
 
 //TODO: need to implement
 
 export default class JsonCardForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      formName: props.headerTitle,
+      headerTitle: this.setHeaderTitle(),
+    };
+    this.schemaFields = (props.schema && Object.keys(props.schema)) || [];
+    //this.uiContext = props.uiContext; // this is passed from your ui
+    //this.dispatch = useDispatch();
+    this.onSubmit = props.onSubmit;
+    this.setHeaderTitle();
+  }
+  componentDidMount() {
+    // this.dispatch = useDispatch();
+    this.schemaFields =
+      (this.props.schema && Object.keys(this.props.schema)) || [];
+    //this.setHeaderTitle();
+  }
+  componentDidUpdate() {
+    //this.dispatch = useDispatch();
+    this.schemaFields =
+      (this.props.schema && Object.keys(this.props.schema)) || [];
+    // this.setHeaderTitle();
+  }
+
+  setHeaderTitle() {
+    if (this.props.initialValues && this.props.id) {
+      return `Edit '${this.props.headerElement}'`;
+      // this.setState({
+      //   headerTitle: `Edit '${this.props.headerElement}'`,
+      // });
+    } else return "New " + this.props.headerTitle;
+  }
   render() {
+    //this.dispatch = useDispatch();
     return (
-      <Card>
-        <FormHeader />
-        <InputForm />
-      </Card>
-    )
+      <>
+        <Card size="lg" aria-labelledby="example-modal-sizes-title-lg">
+          <EditCardHeader
+            title={this.state.headerTitle}
+            actionsLoading={this.props.actionsLoading}
+          />
+          <Formik
+            initialValues={this.props.initialValues}
+            enableReinitialize={true}
+            validationSchema={this.props.EditSchema}
+            onSubmit={(values) => {
+              //alert(JSON.stringify(values))
+              this.props.onSubmit(values);
+            }}
+          >
+            {({ handleSubmit }) => (
+              <>
+                <CardBody className="overlay overlay-block cursor-default">
+                  {this.props.actionsLoading && (
+                    <div className="overlay-layer bg-transparent">
+                      <div className="spinner spinner-lg spinner-success" />
+                    </div>
+                  )}
+                  <Form className="form form-label-right card-group row-flex  row-cols-md-3 row-cols-lg-4 row-cols-sm-1 g-4">
+                    {this.schemaFields.map((field, index) => (
+                      <div key={field}>
+                        {GetSchemaElement(this.props.schema, field)}
+                      </div>
+                    ))}
+                  </Form>
+                </CardBody>
+                <CardFooter className="text-center small p-1 bg-light border ">
+                  <button
+                    type="submit"
+                    onClick={() => handleSubmit()}
+                    className="btn btn-primary btn-elevate float-right m-2"
+                  >
+                    Save
+                  </button>
+                  
+                  <button
+                    type="button"
+                    onClick={this.props.onHide}
+                    className="btn btn-light btn-elevate float-right m-2"
+                  >
+                    Cancel
+                  </button>
+                </CardFooter>
+              </>
+            )}
+          </Formik>
+        </Card>
+      </>
+    );
   }
 }
 
-const FormHeader = (options) => {
-  return <CardHeader>{options.header}</CardHeader>
-}
-
-const InputForm = (options) => {
-  return (
-    <>
-      <Formik
-        enableReinitialize={true}
-        initialValues={this.rent}
-        validationSchema={this.EditSchema}
-        onSubmit={(values) => {
-          this.saveData(values)
-        }}
-      >
-        {({ handleSubmit }) => (
-          <>
-            <CardBody className="overlay overlay-block cursor-default">
-              {this.actionsLoading && (
-                <div className="overlay-layer bg-transparent">
-                  <div className="spinner spinner-lg spinner-success" />
-                </div>
-              )}
-              <Form className="form form-label-right">
-                <div className="form-group row">
-                  {/* Store */}
-                  <div className="col-lg-4">
-                    <Select name="storeId" label="Store">
-                      {this.storeList &&
-                        this.storeList.map((item) => (
-                          <option key={item.storeId} value={item.storeId}>
-                            {item.storeName}
-                          </option>
-                        ))}
-                    </Select>
-                  </div>
-
-                  {/* Email */}
-                  <div className="col-lg-4">
-                    <Select
-                      name="rentedLocationId"
-                      placeholder="Location"
-                      label="Location"
-                    >
-                      <option value="">Select Location</option>
-                      {this.locationList &&
-                        this.locationList.map((item) => (
-                          <option
-                            key={item.rentedLocationId}
-                            value={item.rentedLocationId}
-                          >
-                            {item.placeName}
-                          </option>
-                        ))}
-                    </Select>
-                  </div>
-                  {/* Email */}
-                  <div className="col-lg-4">
-                    <Select
-                      name="rentType"
-                      placeholder="Rent Type"
-                      label="Rent Type"
-                    >
-                      <option value="">Select Type</option>
-                      {this.rentTypes &&
-                        this.rentTypes.map((item) => (
-                          <option key={item.value} value={item.value}>
-                            {item.name}
-                          </option>
-                        ))}
-                    </Select>
-                  </div>
-                </div>
-
-                <div className="form-group row">
-                  {/* Date of BankDeposit */}
-                  <div className="col-lg-4">
-                    <DatePickerField
-                      dateFormat="yyyy-MM-dd"
-                      name="onDate"
-                      label="On Date"
-                    />
-                  </div>
-
-                  {/*  Father Name*/}
-                  <div className="col-lg-4">
-                    <Field
-                      name="period"
-                      component={Input}
-                      placeholder="Period"
-                      label="Period"
-                    />
-                  </div>
-                  {/*  State Name*/}
-                  <div className="col-lg-4">
-                    <Field
-                      name="amount"
-                      component={Input}
-                      placeholder="Amount"
-                      label="Amount"
-                    />
-                  </div>
-                </div>
-                <div className="form-group row">
-                  {/* Email */}
-                  <div className="col-lg-4">
-                    <Select name="mode" placeholder="Mode" label="Mode">
-                      <option value="">Select Mode</option>
-                      {this.payModes &&
-                        this.payModes.map((item) => (
-                          <option key={item.value} value={item.value}>
-                            {item.name}
-                          </option>
-                        ))}
-                    </Select>
-                  </div>
-                  {/*  Father Name*/}
-                  <div className="col-lg-4">
-                    <Field
-                      name="paymentDetails"
-                      component={Input}
-                      placeholder="Payment Details"
-                      label="Payment Details"
-                    />
-                  </div>
-                  {/*  Father Name*/}
-                  <div className="col-lg-4">
-                    <Field
-                      name="remarks"
-                      component={Input}
-                      placeholder="Remarks"
-                      label="Remarks"
-                    />
-                  </div>
-                </div>
-              </Form>
-            </CardBody>
-            <CardFooter>
-              <button
-                type="button"
-                onClick={this.onHide}
-                className="btn btn-light btn-elevate"
-              >
-                Cancel
-              </button>
-              <> </>
-              <button
-                type="submit"
-                onClick={() => handleSubmit()}
-                className="btn btn-primary btn-elevate"
-              >
-                Save
-              </button>
-            </CardFooter>
-          </>
-        )}
-      </Formik>
-    </>
-  )
+export class EditCardHeader extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { title: props.title };
+  }
+  render() {
+    return (
+      <>
+        {this.props.actionsLoading && <ModalProgressBar />}
+        <CardHeader title={this.state.title}>
+          {/* <CardHeaderToolbar id="example-modal-sizes-title-lg">
+            {this.state.title}
+          </CardHeaderToolbar> */}
+        </CardHeader>
+      </>
+    );
+  }
 }

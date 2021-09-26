@@ -9,9 +9,8 @@ import {
 // Field Controls started
 export const TextField = ({ label, name, placeholder, className }) => {
   return (
-    <div className="col">
+    <div className="col m-2">
       <Field
-     
         name={name}
         component={Input}
         placeholder={placeholder}
@@ -22,7 +21,7 @@ export const TextField = ({ label, name, placeholder, className }) => {
 };
 export const NumberField = ({ label, name, placeholder, className }) => {
   return (
-    <div className="col ">
+    <div className="col m-2">
       <Field
         type="number"
         name={name}
@@ -35,7 +34,7 @@ export const NumberField = ({ label, name, placeholder, className }) => {
 };
 export const TelField = ({ label, name, placeholder, className }) => {
   return (
-    <div className="col ">
+    <div className="col m-2">
       <Field
         type="tel"
         name={name}
@@ -48,7 +47,7 @@ export const TelField = ({ label, name, placeholder, className }) => {
 };
 export const EmailField = ({ label, name, placeholder, className }) => {
   return (
-    <div className="col ">
+    <div className="col m-2">
       <Field
         type="email"
         name={name}
@@ -74,6 +73,7 @@ export const RadioField = ({ label, name, options, className }) => {
               name={name}
               value={optionItem.value}
               key={optionItem.value}
+              label={optionItem.label}
             />
             <label className="ml-2 mb-1">{optionItem.label}</label>
           </>
@@ -92,7 +92,7 @@ export const SelectField = ({
 }) => {
   console.log(options);
   return (
-    <div className="col ">
+    <div className="col m-2">
       <Select name={name} label={label}>
         {" "}
         placeholder={label}
@@ -131,19 +131,18 @@ export const MultiCheckField = ({ label, checkOptions, className }) => {
 };
 export const CheckField = ({ name, label, value, className }) => {
   return (
-    <div className="col ">
-      <Field type="checkbox" name={name} value={value} label={label}/>
-      <label className={"ml-2 mb-1" + className && className}>{label}</label>
+    <div className="col m-2">
+      <Field type="checkbox" name={name} value={value} label={label} />
+      <label className={"ml-2 mb-1" + className}>{label}</label>
     </div>
   );
 };
 
 export const DateField = ({ label, name, placeholder, className }) => {
   return (
-    <div className="col ">
+    <div className="col m-2">
       <DatePickerField
         name={name}
-        
         placeholder={placeholder}
         label={label}
         dateFormat="yyyy-MM-dd"
@@ -153,10 +152,9 @@ export const DateField = ({ label, name, placeholder, className }) => {
 };
 export const DateTimeField = ({ label, name, placeholder, className }) => {
   return (
-    <div className="col ">
+    <div className="col m-2">
       <DatePickerField
         name={name}
-        
         placeholder={placeholder}
         label={label}
         dateFormat="yyyy-MM-dd, h:mm aa"
@@ -167,80 +165,101 @@ export const DateTimeField = ({ label, name, placeholder, className }) => {
 };
 //End of Field Controls
 
-  // Start of Option list genaration.
- export const getSchemaFieldOptions=(schema, field)=> {
-    return schema[field].options.map((option) => {
-      let label = option.label ? option.label : option
-      let value = option.value ? option.value : option
-      if (Array.isArray(option)) {
-        value = option[0].value ? option[0].value : option[0]
-        label = option[1].label
-          ? option[1].label
-          : option[1] || option[0].label
-          ? option[0].label
-          : option[0]
-      }
-      return { value, label }
-    })
-  }
-  //end of option list genaration
-
-  //Start of Creating Form Element for a Form
-  export const GetSchemaElement=(schema, field)=> {
-    switch (schema[field].element) {
-      case 'radio':
-        return (
-          <RadioField
-            label={schema[field].label}
-            name={field}
-            options={getSchemaFieldOptions(schema, field)}
-          />
-        )
-
-      case 'select':
-        return (
-          <SelectField
-          label={schema[field].label}
-            name={field}
-            options={getSchemaFieldOptions(schema, field)}
-            valueName={schema[field].valueName}
-            keyName={schema[field].keyName}
-            placeholder={schema[field].placeholder}
-          />
-        )
-
-      case 'number':
-        return (
-          <NumberField label={schema[field].label} name={field} placeholder={schema[field].placeholder} />
-        )
-      case 'checkbox':
-        return (
-          <CheckField name={field} placeholder={schema[field].placeholder} value={schema[field].value} label={schema[field].label} />
-        )
-      case 'multicheckbox':
-        return (
-          <MultiCheckField
-            label={schema[field].label}
-            name={field}
-            placeholder={schema[field].placeholder}
-            checkOptions={schema[field].options}
-          />
-        )
-
-      case 'date':
-        return (
-          <DateField label={schema[field].label} name={field} placeholder={schema[field].placeholder} />
-        )
-      case 'datetime':
-        return (
-          <DateTimeField label={schema[field].label} name={field} placeholder={schema[field].placeholder} />
-        )
-
-      default:
-      case 'text':
-        return (
-          <TextField name={field} placeholder={schema[field].placeholder} label={schema[field].label} />
-        )
+// Start of Option list genaration.
+export const getSchemaFieldOptions = (schema, field) => {
+  return schema[field].options.map((option) => {
+    let label = option.label ? option.label : option;
+    let value = option.value ? option.value : option;
+    if (Array.isArray(option)) {
+      value = option[0].value ? option[0].value : option[0];
+      label = option[1].label
+        ? option[1].label
+        : option[1] || option[0].label
+        ? option[0].label
+        : option[0];
     }
+    return { value, label };
+  });
+};
+//end of option list genaration
+
+//Start of Creating Form Element for a Form
+export const GetSchemaElement = (schema, field) => {
+  switch (schema[field].element) {
+    case "radio":
+      return (
+        <RadioField
+          label={schema[field].label}
+          name={field}
+          options={getSchemaFieldOptions(schema, field)}
+        />
+      );
+
+    case "select":
+      return (
+        <SelectField
+          label={schema[field].label}
+          name={field}
+          options={getSchemaFieldOptions(schema, field)}
+          valueName={schema[field].valueName}
+          keyName={schema[field].keyName}
+          placeholder={schema[field].placeholder}
+        />
+      );
+
+    case "number":
+      return (
+        <NumberField
+          label={schema[field].label}
+          name={field}
+          placeholder={schema[field].placeholder}
+        />
+      );
+    case "checkbox":
+      return (
+        <CheckField
+          name={field}
+          placeholder={schema[field].placeholder}
+          value={schema[field].value}
+          label={schema[field].label}
+        />
+      );
+    case "multicheckbox":
+      return (
+        <MultiCheckField
+          label={schema[field].label}
+          name={field}
+          placeholder={schema[field].placeholder}
+          checkOptions={schema[field].options}
+        />
+      );
+
+    case "date":
+      return (
+        <DateField
+          label={schema[field].label}
+          name={field}
+          placeholder={schema[field].placeholder}
+        />
+      );
+    case "datetime":
+      return (
+        <DateTimeField
+          label={schema[field].label}
+          name={field}
+          placeholder={schema[field].placeholder}
+        />
+      );
+
+    default:
+    case "text":
+      return (
+        <TextField
+          name={field}
+          placeholder={schema[field].placeholder}
+          label={schema[field].label}
+        />
+      );
   }
-  //End of Form Element Creation for a form
+};
+//End of Form Element Creation for a form

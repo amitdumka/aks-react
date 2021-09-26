@@ -8,6 +8,7 @@ import {
 } from "../../../_aks/_partials/controls";
 
 import JsonModalForm from "../../componets/JsonForm/JsonModalForm";
+import JsonCardForm from "../../componets/JsonForm/JsonCardForm";
 
 //Schema or Element of Forms delcarations.
 // add element based on serial way , first in first out.
@@ -128,19 +129,24 @@ const initialValues = {
   firstName: "",
   lastName: "",
 };
-export const TestMPage = () => {
+export const TestMPage = ({ history }) => {
   const subheader = useSubheader();
   subheader.setTitle("Form Gen Test");
   const submit = (values) => {
     alert(JSON.stringify(values));
   };
+
+  const onHide=() => {
+    history.push("/testM");
+  }
   //console.log(testSchema)
   return (
     <>
       <div className="h2">Welcome to eStore </div>
       <div className="h4">Testing of Json form component</div>
       {/* <GenForm schema={testSchema} onSubmit={submit} /> */}
-      <JsonModalForm
+      <JsonCardForm
+        onHide={onHide}
         schema={testSchema}
         onSubmit={submit}
         headerElement="Dumka Store"
