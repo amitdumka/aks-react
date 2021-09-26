@@ -5,7 +5,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import * as actions from '../../../_redux/rents/Actions'
 import * as commonActions from '../../../../_redux/Actions'
 import { ModalProgressBar } from ''
-import { EditForm } from './EditForm'
+import { JsonModalForm } from '../../JsonForm/JsonModalForm'
 
 export default class EditDialog extends Component {
   constructor(props) {
@@ -78,6 +78,8 @@ export default class EditDialog extends Component {
   }
 
   saveData(data) {
+    //TODO: this function should be passed from modal is created. or try to autogenerate it
+    
     data.storeId = parseInt(data.storeId)
     data.rentedLocationId = parseInt(data.rentedLocationId)
     data.rentType = parseInt(data.rentType)
@@ -94,24 +96,23 @@ export default class EditDialog extends Component {
 
   render() {
     return (
-      <Modal
-        size="lg"
-        show={this.show}
-        onHide={this.onHide}
-        aria-labelledby="example-modal-sizes-title-lg"
-      >
-        <EditDialogHeader id={this.id} />
-        <EditForm
-          saveData={this.saveData}
-          actionsLoading={this.actionsLoading}
+      <>
+        <JsonModalForm
           onHide={this.onHide}
-          rent={this.rentForEdit || this.uiProps.initRent}
-          payModes={this.payModes}
-          rentTypes={this.rentTypes}
-          locationList={this.rentedLocations}
-          storeList={this.storeList}
+          show={this.show}
+          actionsLoading={this.actionsLoading}
+          onSubmit={this.saveData}
+          initialValues={this.initialValues}
         />
-      </Modal>
+      </>
+
+      // <EditForm
+      //   rent={this.rentForEdit || this.uiProps.initRent}
+      //   payModes={this.payModes}
+      //   rentTypes={this.rentTypes}
+      //   locationList={this.rentedLocations}
+      //   storeList={this.storeList}
+      // />
     )
   }
 }

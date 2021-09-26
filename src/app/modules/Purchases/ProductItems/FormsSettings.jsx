@@ -1,9 +1,31 @@
-
-export const FormsElements=[
-    {id:1, fieldName:'barcode', label:"Barcode",placeholder:"Barcode", typeOf:"string", isRequired:true,type:"text"},
-    {id:2, fieldName:'productName', label:"Product Name", placeholder:"Product Name",typeOf:"string", isRequired:true,type:"text"},
-    {id:3, fieldName:'brandId', label:"Brand Name", placeholder:"Brand Name",typeOf:"int", isRequired:true, type:"select" ,selectFieldList:"brands", selectFieldKey:"brandId",selectFieldValue:"brandName"},
-    {id:4, fieldName:'styleCode', label:"Style", placeholder:"Style code",typeOf:"string", isRequired:true,type:"text"},
-    {id:5, fieldName:'mrp', label:"MRP", placeholder:"MRP",typeOf:"money", isRequired:true,type:"text"},
-    {id:6, fieldName:'cost', label:"Cost", placeholder:"Cost",typeOf:"money", isRequired:true,type:"text"},
-];
+export const FormsElements = {
+  barcode: {
+    label: 'Barcode',
+    placeholder: 'Barcode',
+    isRequired: true,
+    type: 'text',
+  },
+  productName: {
+    label: 'Product Name',
+    placeholder: 'Product Name',
+    isRequired: true,
+    type: 'text',
+  },
+  brandId: {
+    label: 'Brand Name',
+    placeholder: 'Brand Name',
+    isRequired: true,
+    type: 'select',
+    selectFieldList: 'brands',
+    selectFieldKey: 'brandId',
+    selectFieldValue: 'brandName',
+  },
+  styleCode: {
+    label: 'Style',
+    placeholder: 'Style code',
+    isRequired: true,
+    type: 'text',
+  },
+  mrp: { label: 'MRP', placeholder: 'MRP', isRequired: true, type: 'text' },
+  cost: { label: 'Cost', placeholder: 'Cost', isRequired: true, type: 'text' },
+}

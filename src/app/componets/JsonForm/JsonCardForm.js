@@ -1,54 +1,57 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import {
   Card,
   CardBody,
   CardFooter,
   CardHeader,
+  CardHeaderTitle,
   CardHeaderToolbar,
-} from "../../../_aks/_partials/controls";
-import { Formik, Form } from "formik";
-import * as FieldContols from "./Fields";
-import { Modal } from "react-bootstrap";
+} from '../../../_aks/_partials/controls'
+import { Formik, Form } from 'formik'
+import * as FieldContols from './Fields'
+import { Modal } from 'react-bootstrap'
 
-import { ModalProgressBar } from "../../../_aks/_partials/controls";
+import { ModalProgressBar } from '../../../_aks/_partials/controls'
 //import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { GetSchemaElement } from "./Fields";
+import { GetSchemaElement } from './Fields'
+//import {HomeIcon} from "@material-ui/icons"
+import AddBoxIcon from '@material-ui/icons/AddBox'
 
 //TODO: need to implement
 
 export default class JsonCardForm extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       formName: props.headerTitle,
       headerTitle: this.setHeaderTitle(),
-    };
-    this.schemaFields = (props.schema && Object.keys(props.schema)) || [];
+    }
+    this.schemaFields = (props.schema && Object.keys(props.schema)) || []
     //this.uiContext = props.uiContext; // this is passed from your ui
     //this.dispatch = useDispatch();
-    this.onSubmit = props.onSubmit;
-    this.setHeaderTitle();
+    this.onSubmit = props.onSubmit
+    this.setHeaderTitle()
   }
   componentDidMount() {
     // this.dispatch = useDispatch();
     this.schemaFields =
-      (this.props.schema && Object.keys(this.props.schema)) || [];
+      (this.props.schema && Object.keys(this.props.schema)) || []
     //this.setHeaderTitle();
   }
   componentDidUpdate() {
     //this.dispatch = useDispatch();
     this.schemaFields =
-      (this.props.schema && Object.keys(this.props.schema)) || [];
+      (this.props.schema && Object.keys(this.props.schema)) || []
     // this.setHeaderTitle();
   }
 
   setHeaderTitle() {
     if (this.props.initialValues && this.props.id) {
-      return `Edit '${this.props.headerElement}'`;
+      return `Edit '${this.props.headerElement}'`
       // this.setState({
       //   headerTitle: `Edit '${this.props.headerElement}'`,
       // });
-    } else return "New " + this.props.headerTitle;
+    } else return 'New ' + this.props.headerTitle
   }
   render() {
     //this.dispatch = useDispatch();
@@ -65,7 +68,7 @@ export default class JsonCardForm extends Component {
             validationSchema={this.props.EditSchema}
             onSubmit={(values) => {
               //alert(JSON.stringify(values))
-              this.props.onSubmit(values);
+              this.props.onSubmit(values)
             }}
           >
             {({ handleSubmit }) => (
@@ -84,7 +87,7 @@ export default class JsonCardForm extends Component {
                     ))}
                   </Form>
                 </CardBody>
-                <CardFooter className="text-center small p-1 bg-light border ">
+                <CardFooter className="text-center small p-1 ">
                   <button
                     type="submit"
                     onClick={() => handleSubmit()}
@@ -92,7 +95,7 @@ export default class JsonCardForm extends Component {
                   >
                     Save
                   </button>
-                  
+
                   <button
                     type="button"
                     onClick={this.props.onHide}
@@ -106,25 +109,28 @@ export default class JsonCardForm extends Component {
           </Formik>
         </Card>
       </>
-    );
+    )
   }
 }
 
 export class EditCardHeader extends Component {
   constructor(props) {
-    super(props);
-    this.state = { title: props.title };
+    super(props)
+    this.state = { title: props.title }
   }
   render() {
     return (
       <>
         {this.props.actionsLoading && <ModalProgressBar />}
-        <CardHeader title={this.state.title}>
-          {/* <CardHeaderToolbar id="example-modal-sizes-title-lg">
+        <CardHeader>
+          <CardHeaderTitle
+            id="example-modal-sizes-title-lg"
+            className="card-title  text-primary font-weight-bold"
+          >
             {this.state.title}
-          </CardHeaderToolbar> */}
+          </CardHeaderTitle>
         </CardHeader>
       </>
-    );
+    )
   }
 }
