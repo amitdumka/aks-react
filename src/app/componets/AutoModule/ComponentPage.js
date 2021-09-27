@@ -19,96 +19,96 @@ import ViewCard from './ViewCard'
 export default class ComponentPage extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {ComPath:props.Settings.ComPath}
     this.uiEvents = {
       newButtonClick: () => {
-        this.history.push(this.Settings.ComPath + '/new')
+        this.history.push(this.props.Settings.ComPath + '/new')
       },
       openEditDialog: (id) => {
-        this.history.push(`${this.Settings.ComPath}/${id}/edit`)
+        this.history.push(`${this.props.Settings.ComPath}/${id}/edit`)
       },
       openDeleteDialog: (id) => {
-        this.history.push(`${this.Settings.ComPath}/${id}/delete`)
+        this.history.push(`${this.props.Settings.ComPath}/${id}/delete`)
       },
       openDeletesDialog: () => {
-        this.history.push(`${this.Settings.ComPath}/deletes`)
+        this.history.push(`${this.props.Settings.ComPath}/deletes`)
       },
       openFetchDialog: () => {
-        this.history.push(`${this.Settings.ComPath}/fetch`)
+        this.history.push(`${this.props.Settings.ComPath}/fetch`)
       },
       openUpdateStatusDialog: () => {
-        this.history.push(this.Settings.ComPath + '/updateStatus')
+        this.history.push(this.props.Settings.ComPath + '/updateStatus')
       },
     }
   }
 
   render() {
     return (
-      <UIProvider UIEvents={this.uiEvents} Filters={this.Settings.filters} InitDataModel={this.Settings.initDataModel}>
+      <UIProvider UIEvents={this.uiEvents} Filters={this.props.Settings.filters} InitDataModel={this.props.Settings.initDataModel}>
         <CompLoadingDialog />
-        <Route path={this.Settings.ComPath + '/new'}>
+        <Route path={this.props.Settings.ComPath + '/new'}>
           {({ history, match }) => (
             <EditDialog
               show={match != null}
               onHide={() => {
-                history.push(this.Settings.ComPath)
+                history.push(this.props.Settings.ComPath)
               }}
             />
           )}
         </Route>
-        <Route path={this.Settings.ComPath + '/:id/edit'}>
+        <Route path={this.props.Settings.ComPath + '/:id/edit'}>
           {({ history, match }) => (
             <EditDialog
               show={match != null}
               id={match && match.params.id}
               onHide={() => {
-                history.push(this.Settings.ComPath + '')
+                history.push(this.props.Settings.ComPath + '')
               }}
             />
           )}
         </Route>
-        <Route path={this.Settings.ComPath + '/deletes'}>
+        <Route path={this.props.Settings.ComPath + '/deletes'}>
           {({ history, match }) => (
             <DeletesDialog
               show={match != null}
               onHide={() => {
-                history.push(this.Settings.ComPath + '')
+                history.push(this.props.Settings.ComPath + '')
               }}
             />
           )}
         </Route>
-        <Route path={this.Settings.ComPath + '/:id/delete'}>
+        <Route path={this.props.Settings.ComPath + '/:id/delete'}>
           {({ history, match }) => (
             <DeleteDialog
               show={match != null}
               id={match && match.params.id}
               onHide={() => {
-                history.push(this.Settings.ComPath + '')
+                history.push(this.props.Settings.ComPath + '')
               }}
             />
           )}
         </Route>
-        <Route path={this.Settings.ComPath + '/fetch'}>
+        <Route path={this.props.Settings.ComPath + '/fetch'}>
           {({ history, match }) => (
             <FetchDialog
               show={match != null}
               onHide={() => {
-                history.push(this.Settings.ComPath + '')
+                history.push(this.props.Settings.ComPath + '')
               }}
             />
           )}
         </Route>
-        <Route path={this.Settings.ComPath + '/updateStatus'}>
+        <Route path={this.props.Settings.ComPath + '/updateStatus'}>
           {({ history, match }) => (
             <UpdateStateDialog
               show={match != null}
               onHide={() => {
-                history.push(this.Settings.ComPath + '')
+                history.push(this.props.Settings.ComPath + '')
               }}
             />
           )}
         </Route>
-        <ViewCard Settings={this.Settings}/>
+        <ViewCard Settings={this.props.Settings}/>
       </UIProvider>
     )
   }

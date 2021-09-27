@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { useEffect, useMemo } from 'react'
-import BootstrapTable from 'react-bootstrap-table-next'
+import React, { Component } from "react";
+import { useEffect, useMemo } from "react";
+import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory, {
   PaginationProvider,
-} from 'react-bootstrap-table2-paginator'
-import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import * as actions from '../../../_redux/rents/Actions'
+} from "react-bootstrap-table2-paginator";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import * as actions from "../../../_redux/rents/Actions";
 import {
   getSelectRow,
   getHandlerTableChange,
@@ -13,29 +13,28 @@ import {
   PleaseWaitMessage,
   sortCaret,
   headerSortingClasses,
-} from '../../../../../../_metronic/_helpers'
-import * as uiHelpers from '../UIHelpers'
-import * as columnFormatters from './column-formatters'
-import { Pagination } from '../../../../../../_metronic/_partials/controls'
-import { useUIContext } from '../UIContext'
+} from "../../../../../../_metronic/_helpers";
+import * as uiHelpers from "../UIHelpers";
+import * as columnFormatters from "./column-formatters";
+import { Pagination } from "../../../../../../_metronic/_partials/controls";
+import { useUIContext } from "../UIContext";
 
 // https://www.glennstovall.com/how-to-use-useeffect-and-other-hooks-in-class-components/
 // Above link is help need to call useEffect and other hooks as extended functional component.
-
 
 // Note: Parameters is Setting, which is part of main setting called TableSettings.
 // It helps to load create table and load data from redux-State
 export default class RecordDataTable extends Component {
   constructor(props) {
-    super(props)
-    this.state = {}
-    
+    super(props);
+    this.state = {};
+
     this.currentState = useSelector(
       (reduxState) => ({ currentState: reduxState.rents }),
-      shallowEqual,
-    )
-    const { totalCount, entities, listLoading } = this.currentState
-    this.dispatch = useDispatch()  
+      shallowEqual
+    );
+    const { totalCount, entities, listLoading } = this.currentState;
+    this.dispatch = useDispatch();
     // Table pagination properties
     this.paginationOptions = {
       custom: true,
@@ -43,42 +42,38 @@ export default class RecordDataTable extends Component {
       sizePerPageList: uiHelpers.sizePerPageList,
       sizePerPage: this.uiProps.queryParams.pageSize,
       page: this.uiProps.queryParams.pageNumber,
-    }
+    };
   }
-  static uiContext = useUIContext()
+  static uiContext = useUIContext();
 
   componentDidMount() {
-    this.uiProps = () => {
-      return {
-        ids: this.uiContext.ids,
-        setIds: this.uiContext.setIds,
-        queryParams: this.uiContext.queryParams,
-        setQueryParams: this.uiContext.setQueryParams,
-        openEditDialog: this.uiContext.openEditDialog,
-        openDeleteDialog: this.uiContext.openDeleteDialog,
-      }
-    }
+    this.uiProps = {
+      ids: this.uiContext.ids,
+      setIds: this.uiContext.setIds,
+      queryParams: this.uiContext.queryParams,
+      setQueryParams: this.uiContext.setQueryParams,
+      openEditDialog: this.uiContext.openEditDialog,
+      openDeleteDialog: this.uiContext.openDeleteDialog,
+    };
     // clear selections list
-    this.uiProps.setIds([])
+    this.uiProps.setIds([]);
     // server call by queryParams
-    this.dispatch(actions.fetchProductItems(this.uiProps.queryParams))
+    this.dispatch(actions.fetchProductItems(this.uiProps.queryParams));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }
   componentDidUpdate() {
-    this.uiProps = () => {
-      return {
-        ids: this.uiContext.ids,
-        setIds: this.uiContext.setIds,
-        queryParams: this.uiContext.queryParams,
-        setQueryParams: this.uiContext.setQueryParams,
-        openEditDialog: this.uiContext.openEditDialog,
-        openDeleteDialog: this.uiContext.openDeleteDialog,
-      }
-    }
+    this.uiProps = {
+      ids: this.uiContext.ids,
+      setIds: this.uiContext.setIds,
+      queryParams: this.uiContext.queryParams,
+      setQueryParams: this.uiContext.setQueryParams,
+      openEditDialog: this.uiContext.openEditDialog,
+      openDeleteDialog: this.uiContext.openDeleteDialog,
+    };
     // clear selections list
-    this.uiProps.setIds([])
+    this.uiProps.setIds([]);
     // server call by queryParams
-    this.dispatch(actions.fetchProductItems(this.uiProps.queryParams))
+    this.dispatch(actions.fetchProductItems(this.uiProps.queryParams));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }
 
@@ -113,7 +108,7 @@ export default class RecordDataTable extends Component {
                   columns={this.TableSettings.columns}
                   defaultSorted={uiHelpers.defaultSorted}
                   onTableChange={getHandlerTableChange(
-                    this.uiProps.setQueryParams,
+                    this.uiProps.setQueryParams
                   )}
                   selectRow={getSelectRow({
                     entities: this.entities,
@@ -127,10 +122,10 @@ export default class RecordDataTable extends Component {
                   <NoRecordsFoundMessage entities={this.entities} />
                 </BootstrapTable>
               </Pagination>
-            )
+            );
           }}
         </PaginationProvider>
       </>
-    )
+    );
   }
 }
