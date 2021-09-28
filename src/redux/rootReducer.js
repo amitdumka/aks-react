@@ -6,9 +6,11 @@ import * as auth from "../app/modules/Auth/_redux/authRedux";
 //import {productsSlice} from "../app/modules/ECommerce/_redux/products/productsSlice";
 //import {remarksSlice} from "../app/modules/ECommerce/_redux/remarks/remarksSlice";
 //import {specificationsSlice} from "../app/modules/ECommerce/_redux/specifications/specificationsSlice";
+import { ProductItemSlice } from "../app/_redux/Purchases/ProductItemActions";
 
 export const rootReducer = combineReducers({
   auth: auth.reducer,
+  productItems:ProductItemSlice.reducer,
   //customers: customersSlice.reducer,
   //products: productsSlice.reducer,
   //remarks: remarksSlice.reducer,
