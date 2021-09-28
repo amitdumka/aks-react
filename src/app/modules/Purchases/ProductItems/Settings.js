@@ -136,15 +136,22 @@ export const columns = [
 //Start of settings section
 export const Settings = {
   componentName: ComponentName,
-  defaultSorted: "productName",
+  defaultSorted :[{ dataField: 'productName', order: 'asc' },],
   filter: { productName: "", barcode: "" ,styleCode:""},
   basePath: "/purchase",
   comPath: "/purchase/productItems",
+  initialFilter : {filter: { productName: "", barcode: "" ,styleCode:""},
+    sortOrder: 'asc', // asc||desc
+    sortField: 'id',
+    pageNumber: 1,
+    pageSize: 10,
+  },
   tableSettings: {
     // Table columns
+    stateName:"productItems",
     columns: columns,
     keyField: "barcode",
-    noDataIndication: "No Record Found now..",
+    noDataIndication: "No Record Found now..", 
   },
   actionColSetting: {
     editTitle: "Edit Product Item",
@@ -196,4 +203,11 @@ export const Settings = {
     editColumnData: "",
   },
   editSchema: EditSchema,
+  reduxSetting: {
+    stateName:"productItems", 
+    keyName:"barcode",
+    basicUrl:"api/productItems",
+    commonState:"commonTypes",
+    
+  }
 }; //end of Settings section

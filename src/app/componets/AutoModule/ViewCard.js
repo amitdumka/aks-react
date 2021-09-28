@@ -5,9 +5,9 @@ import {
   CardHeader,
   CardHeaderToolbar,
 } from '../../../_aks/_partials/controls'
-import { Filter } from './filter/Filter'
-import { RecordDataTable } from './table/Table'
-import { Grouping } from './grouping/Grouping'
+import { Filter } from './Filters/Filter'
+import { ShowTable } from './ShowDataTable'
+import { Grouping } from './Grouping/Grouping'
 import { useUIContext } from './UIContext'
 
 //Note : Parameters is Settings which will have all type of settings sets, which is need to here and further down.
@@ -15,10 +15,14 @@ import { useUIContext } from './UIContext'
 export default class ViewCard extends Component {
   constructor(props) {
     super(props)
-    this.state = { ids: null, newButtonClick: null ,title:props.Settings.componentName}
+    this.state = {
+      ids: null,
+      newButtonClick: null,
+      title: props.Settings.componentName,
+    }
   }
 
-  static UIContext = useUIContext();
+  static UIContext = useUIContext()
 
   componentDidMount() {
     this.setState({
@@ -48,9 +52,12 @@ export default class ViewCard extends Component {
           </CardHeaderToolbar>
         </CardHeader>
         <CardBody>
-          <Filter BaseFilter={this.props.Settings.BaseFilter}/>
+          <Filter BaseFilter={this.props.Settings.BaseFilter} />
           {this.state.ids.length > 0 && <Grouping />}
-          <RecordDataTable Settings={this.props.Settings.tableSettings} />
+          <ShowTable
+            Settings={this.props.Settings.tableSettings}
+            redux={this.props.Settings.reduxSetting}
+          />
         </CardBody>
       </Card>
     )
