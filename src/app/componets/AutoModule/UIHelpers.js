@@ -7,4 +7,18 @@ export const SizePerPageList = [
     { text: "20", value: 20 }
   ];
 
+  //using hooks in class
+  // function withMyHook(Component) {
+  //   return function WrappedComponent(props) {
+  //     const myHookValue = useMyHook();
+  //     return <Component {...props} myHookValue={myHookValue} />;
+  //   }
+  // }
+  // class MyComponent extends React.Component {
+  //   render(){
+  //     const myHookValue = this.props.myHookValue;
+  //     return <div>{myHookValue}</div>;
+  //   }
+  // }
   
+  // export default withMyHook(MyComponent);
