@@ -5,9 +5,9 @@ import {
   CardHeader,
   CardHeaderToolbar,
 } from '../../../_aks/_partials/controls'
-import { Filter } from './filter/Filter'
+import  {Filter}  from './_filter/Filter'
 import { RecordDataTable } from './table/Table'
-import { Grouping } from './grouping/Grouping'
+import { Grouping } from './_grouping/Grouping'
 import { useUIContext } from './UIContext'
 
 export default class ViewCard extends Component {

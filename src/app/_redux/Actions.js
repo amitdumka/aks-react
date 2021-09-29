@@ -1,5 +1,5 @@
-import * as requestFromServer from "../CRUD";
-import { callTypes } from "../SliceCreator";
+import * as requestFromServer from "./CRUD";
+import { callTypes } from "./SliceCreator";
 const Api_Name = "Product Item";
 export const actionType = [
     "find",

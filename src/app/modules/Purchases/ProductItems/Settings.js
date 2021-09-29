@@ -2,7 +2,7 @@
 // This is setting and configuration file for creating Modules component.
 // All Changes are need to made here so it will be reflected at whole module component level.
 import { sortCaret, headerSortingClasses } from "../../../../../_aks/_helpers";
-import * as columnFormatters from "./column-formatters";
+import * as columnFormatters from "../../../componets/AutoModule/ColumnFormatters";
 import * as Yup from "yup";
 
 //TODO: TODO List : List of Item need to be update on setting and pages baisc. It should be well writtern so next time it will be familiar with
@@ -125,6 +125,8 @@ export const columns = [
     formatExtraData: {
       openEditDialog: uiProps.openEditDialog,
       openDeleteDialog: uiProps.openDeleteDialog,
+      idFieldName: uiProps.idFieldName,
+      title: uiProps.title,
     },
     classes: "text-right pr-0",
     headerClasses: "text-right pr-3",
@@ -208,6 +210,7 @@ export const Settings = {
     keyName:"barcode",
     basicUrl:"api/productItems",
     commonState:"commonTypes",
+    commonUrl:"/api/commonStates/",
     
   }
 }; //end of Settings section

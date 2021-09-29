@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL } from "../../_estore/URLConstants";
+import { BASE_URL } from "../../_eStore/Constants/URLConstants";
 
 // CREATE =>  POST: add a new item to the server
 export async function createItem(url, item) {

@@ -19,6 +19,9 @@ import {TestMPage} from "./modules/TestM/TestMPage";
 //   import("./modules/UserProfile/UserProfilePage")
 // );
 
+const PurchasePage=lazy(()=> import  ('./modules/Purchases/PurchasePage'));
+
+
 export default function BasePage() {
   // useEffect(() => {
   //   console.log('Base page');
@@ -36,6 +39,7 @@ export default function BasePage() {
         <ContentRoute path="/builder" component={BuilderPage} />
         <ContentRoute path="/my-page" component={MyPage} />
         <Route path="/testM" component={TestMPage} />
+        <Route path="/purchase" component={PurchasePage} />
         {/* 
         <Route path="/google-material" component={GoogleMaterialPage} />
         <Route path="/react-bootstrap" component={ReactBootstrapPage} />

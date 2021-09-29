@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { MainPage } from "../../componets/Modules/MainPage";
+import MainPage from "../../componets/AutoModule/MainPage";
 
-import { ProductItemsPage as PurchaseItemsPage } from "./ProductItems/ProductItemsPage";
-import { ProductItemsPage as ProductPurchase } from "./ProductItems/ProductItemsPage";
-import { ProductItemsPage as ProductItems } from "./ProductItems/ProductItemsPage";
+import ProductItemsPage from "./ProductItems/ProductItemsPage";
 
 export default class PurchasePage extends Component {
   constructor(props) {
@@ -11,9 +9,9 @@ export default class PurchasePage extends Component {
     this.state = { values: props };
     this.title = "Purchase";
     this.ComponentList = [
-      { path: "/productItems", component: { ProductItems } },
-      { path: "/purchaseProducts", component: { ProductPurchase } },
-      { path: "/purchaseItems", component: { PurchaseItemsPage } },
+      { path: "/productItems", component: { ProductItemsPage } },
+      { path: "/purchaseProducts", component: { ProductItemsPage } },
+      { path: "/purchaseItems", component: { ProductItemsPage } },
     ];
     this.BasePath = "/purchase";
     this.DefaultPath = "/purchase/productItems";
