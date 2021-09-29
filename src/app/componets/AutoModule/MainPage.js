@@ -8,6 +8,7 @@ export default class MainPage extends React.Component {
     this.state = { title: props.title, values: props };
   }
   render() {
+    console.log(this.props.ComponentList);
     return (
       <>
         <Suspense fallback={<LayoutSplashScreen />}>
@@ -15,16 +16,21 @@ export default class MainPage extends React.Component {
             {
               <Redirect
                 exact={true}
-                from={this.BasePath}
-                to={this.DefaultPath}
+                from={this.props.BasePath}
+                to={this.props.DefaultPath}
               />
             }
-            {this.ComponentList.map((item) => (
-              <ContentRoute
-                path={this.BasePath + item.path}
-                component={item.component}
-              />
-            ))}
+            {this.props.ComponentList &&
+              this.props.ComponentList.map((item) => (
+                <>
+                  <ContentRoute
+                    key={this.props.BasePath + item.path}
+                    path={this.props.BasePath + item.path}
+                    component={item.component[item.name]}
+                  />
+                  {console.log(item.component[item.name])}
+                </>
+              ))}
           </Switch>
         </Suspense>
       </>

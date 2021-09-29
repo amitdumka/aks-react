@@ -1,7 +1,7 @@
 //Setting.js
 // This is setting and configuration file for creating Modules component.
 // All Changes are need to made here so it will be reflected at whole module component level.
-import { sortCaret, headerSortingClasses } from "../../../../../_aks/_helpers";
+import { sortCaret, headerSortingClasses } from "../../../../_aks/_helpers";
 import * as columnFormatters from "../../../componets/AutoModule/ColumnFormatters";
 import * as Yup from "yup";
 

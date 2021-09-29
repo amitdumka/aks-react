@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import { isEqual } from "lodash";
 import { useUIContext } from "../UIContext";
 
-export default class Filter extends Component {
+export  class Filter extends Component {
   constructor(props) {
     super(props);
     this.state = {};

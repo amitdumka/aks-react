@@ -43,6 +43,7 @@ export default class ComponentPage extends Component {
   }
 
   render() {
+    console.log(this.props.Settings.ComPath);
     return (
       <UIProvider UIEvents={this.uiEvents} Filters={this.props.Settings.filters} InitDataModel={this.props.Settings.initDataModel}>
         <CompLoadingDialog />

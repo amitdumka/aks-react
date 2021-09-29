@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { useUIContext } from "../UIContext";
 
-export default class Grouping extends Component {
+export  class Grouping extends Component {
   constructor(props) {
     super(props);
     this.state = {};
