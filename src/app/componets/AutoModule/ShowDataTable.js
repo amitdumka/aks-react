@@ -18,6 +18,12 @@ import { useUIContext } from '../UIContext'
 // https://www.glennstovall.com/how-to-use-useeffect-and-other-hooks-in-class-components/
 // Above link is help need to call useEffect and other hooks as extended functional component.
 
+//TODO: Error/Bug 
+//Note: Error Solving 
+// action and functions need to passed from function or autogenerate from settings.js
+// reduxActions need params need to be passed from settings.js 
+// from this actions part is will be created.
+
 export function ShowTable(Settings) {
   // UI Context
   const defaultUIContext = useUIContext()
